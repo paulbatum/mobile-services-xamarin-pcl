@@ -3,13 +3,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.WindowsAzure.MobileServices;
+using Shared;
 
 namespace xamarinpcl
 {
 	public class QSTodoService : DelegatingHandler
 	{
 		static QSTodoService instance = new QSTodoService ();
-		const string applicationURL = @"https://xamarinpcl.azure-mobile.net/";
 		MobileServiceClient client;
 		IMobileServiceTable<ToDoItem> todoTable;
 		int busyCount = 0;
@@ -21,7 +21,8 @@ namespace xamarinpcl
 			CurrentPlatform.Init ();
 
 			// Initialize the Mobile Service client with your URL and key
-			client = new MobileServiceClient (applicationURL, null, this);
+			Common.InitializeClient (this);
+			client = Common.MobileService;
 
 			// Create an MSTable instance to allow us to work with the TodoItem table
 			todoTable = client.GetTable <ToDoItem> ();
@@ -40,8 +41,7 @@ namespace xamarinpcl
 			try {
 				// This code refreshes the entries in the list view by querying the TodoItems table.
 				// The query excludes completed TodoItems
-				Items = await todoTable
-					.Where (todoItem => todoItem.Complete == false).ToListAsync ();
+				Items = await Common.GetIncompleteItems().ToListAsync ();
 
 			} catch (MobileServiceInvalidOperationException e) {
 				Console.Error.WriteLine (@"ERROR {0}", e.Message);

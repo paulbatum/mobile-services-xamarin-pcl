@@ -69,8 +69,8 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToDoActivity.cs" />
-    <Compile Include="ToDoItem.cs" />
     <Compile Include="ToDoItemAdapter.cs" />
+    <Compile Include="ToDoItemWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

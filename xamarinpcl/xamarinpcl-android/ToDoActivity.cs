@@ -6,6 +6,7 @@ using Android.Widget;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
+using Shared;
 
 
 namespace xamarinpcl
@@ -29,8 +30,6 @@ namespace xamarinpcl
 
 		//Progress spinner to use for table operations
 		private ProgressBar progressBar;
-
-		const string applicationURL = @"https://xamarinpcl.azure-mobile.net/";
 
 		protected override async void OnCreate (Bundle bundle)
 		{
@@ -56,9 +55,7 @@ namespace xamarinpcl
 
 				// Create the Mobile Service Client instance, using the provided
 				// Mobile Service URL and key
-				client = new MobileServiceClient (
-					applicationURL,
-					null, progressHandler);
+				client = Common.MobileService;
 
 				// Get the Mobile Service Table instance to use
 				toDoTable = client.GetTable <ToDoItem> ();
@@ -108,7 +105,7 @@ namespace xamarinpcl
 			try {
 				// Get the items that weren't marked as completed and add them in the
 				// adapter
-				var list = await toDoTable.Where (item => item.Complete == false).ToListAsync ();
+				var list = await Common.GetIncompleteItems().ToListAsync ();
 
 				adapter.Clear ();
 

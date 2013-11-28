@@ -43,3 +43,56 @@ Now I'm going to update my iOS and Android projects to reference this PCL projec
 
 ![Project references](/images/project-references.png)
 
+### Step 3 - The Great Refactoring
+
+Now the fun part! Lets pull some shared code into the PCL project. I'll want to take the Mobile Service client, the ToDoItem class, and the code that queries for todo items that are not marked as complete. I could certainly move more over but this should be enough to demonstrate the process. For the sake of simplicity I'll put it all in one file (no I would not do this for a real app):
+
+<pre>
+    public class Common
+    {
+        static Common()
+        {
+            InitializeClient();
+        }
+
+        public static MobileServiceClient MobileService;
+
+        public static void InitializeClient(params DelegatingHandler[] handlers)
+        {
+            MobileService = new MobileServiceClient(
+                @"https://xamarinpcl.azure-mobile.net/",
+                @"your app key goes here",
+                handlers
+            );
+        }
+
+        public static IMobileServiceTableQuery<ToDoItem> GetIncompleteItems()
+        {
+            var toDoTable = MobileService.GetTable&lt;ToDoItem&gt;();
+            return toDoTable.Where(item => item.Complete == false);
+        }
+    }
+
+    public class ToDoItem
+    {
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "text")]
+        public string Text { get; set; }
+
+        [JsonProperty(PropertyName = "complete")]
+        public bool Complete { get; set; }
+    }
+</pre>
+
+I then have a bunch of changes to make to the Android and iOS projects to use the shared code. If you want to see the changes, just take a look at the history of this git repository.
+
+Lets build and run both projects to make sure we haven't broken anything:
+
+![Project references](/images/everything-works-great.png)
+
+Awesome!
+
+### Contact
+
+If you have any questions or run into problems feel free to email me at pbatum@microsoft.com or catch me on twitter (@paulbatum).

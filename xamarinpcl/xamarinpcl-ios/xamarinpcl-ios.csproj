@@ -111,7 +111,6 @@
       <DependentUpon>QSTodoListViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="QSTodoService.cs" />
-    <Compile Include="ToDoItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainStoryboard_iPhone.storyboard" />
