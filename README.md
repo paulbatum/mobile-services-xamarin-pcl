@@ -85,7 +85,7 @@ Now the fun part! Lets pull some shared code into the PCL project. I'll want to 
     }
 </pre>
 
-I then have a bunch of changes to make to the Android and iOS projects to use the shared code. If you want to see the changes, just take a look at the history of this git repository.
+I then have a bunch of changes to make to the Android and iOS projects to use the shared code. If you want to see the changes, just take a look at [this git commit](https://github.com/paulbatum/mobile-services-xamarin-pcl/commit/d58ec604baee1daaf4178662b9f39e652523d1cf).
 
 Lets build and run both projects to make sure we haven't broken anything:
 
