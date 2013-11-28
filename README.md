@@ -21,4 +21,10 @@ I follow the quickstart, clicking the button to create the TodoItem table and th
 
 I'm going to unzip the downloaded project, and rename the folder and project to quickstartpcl-ios to avoid conflicts when I download the project for other platforms. Next I open Xamarin Studio (Visual Studio will work too!), create a new empty solution, add my ios project to it and run:
 
-![Downloading quickstart project](/images/run-ios-quickstart.png)
+![Running iOS quickstart](/images/run-ios-quickstart.png)
+
+### Step 2 - Download the Android project
+
+Back on the quickstart page in the Windows Azure portal I'll switch the project type to Android, download, unzip, rename to quickstartpcl-android, add to the solution and run:
+
+![Running android quickstart](/images/run-android-quickstart.png)
