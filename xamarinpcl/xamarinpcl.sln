@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xamarinpcl-ios", "xamarinpc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xamarinpcl-android", "xamarinpcl-android\xamarinpcl-android.csproj", "{8E1FCCF4-1FA7-4C23-86B0-19C78B155AA3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "xamarinpcl-shared", "xamarinpcl-shared\xamarinpcl-shared.csproj", "{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|iPhoneSimulator = Debug|iPhoneSimulator
@@ -39,6 +41,18 @@ Global
 		{8E1FCCF4-1FA7-4C23-86B0-19C78B155AA3}.Release|iPhone.Build.0 = Release|Any CPU
 		{8E1FCCF4-1FA7-4C23-86B0-19C78B155AA3}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{8E1FCCF4-1FA7-4C23-86B0-19C78B155AA3}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.AppStore|iPhone.Build.0 = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Release|iPhone.Build.0 = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = xamarinpcl-android\xamarinpcl-android.csproj

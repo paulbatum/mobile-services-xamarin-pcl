@@ -100,4 +100,10 @@
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\xamarinpcl-shared\xamarinpcl-shared.csproj">
+      <Project>{9B65BD76-FBBC-44D3-B52C-DEE2B719871D}</Project>
+      <Name>xamarinpcl-shared</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

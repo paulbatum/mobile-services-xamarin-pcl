@@ -28,3 +28,18 @@ I'm going to unzip the downloaded project, and rename the folder and project to 
 Back on the quickstart page in the Windows Azure portal I'll switch the project type to Android, download, unzip, rename to quickstartpcl-android, add to the solution and run:
 
 ![Running android quickstart](/images/run-android-quickstart.png)
+
+### Step 3 - Add the PCL project
+
+In Xamarin Studio I add a new Portable Library project to the solution. I then go to options -> build -> general and select the platforms I want to target. For now I'm going to select .NET 4.5 and remove Silverlight and Windows Phone. I could keep Windows Phone but it makes things a bit more complicated because Windows Phone 8 is missing System.Net.Http. You can fix this with a NuGet package but for the sake of simplicity I won't cover that in this tutorial. So here's what my targets look like:
+
+![Configure PCL targets](/images/configure-pcl-project.png)
+
+Next I'm going to add some references to this project. I want to reference the PCL library that is included in the [Azure Mobile Services component](http://components.xamarin.com/view/azure-mobile-services) that the downloaded projects already reference. I'll also need JSON.NET. I'm going to reference both of these from the `Components/azure-mobile-services-1.1.0/lib/iOS` folder (the versions in the Android folder are exactly the same so that would work too).
+
+![Edit PCL references](/images/add-pcl-references.png)
+
+Now I'm going to update my iOS and Android projects to reference this PCL project and make sure they build OK.
+
+![Project references](/images/project-references.png)
+
