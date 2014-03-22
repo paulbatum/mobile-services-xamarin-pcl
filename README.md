@@ -136,10 +136,12 @@ This forces the Mono version of HttpClient into use. Be aware that as you work w
 
 You might also see warnings in Visual Studio about incorrect assembly bindings. My advice is to ignore any of such warnings that appear for your iOS and Android projects. 
 
+Now that I have my shared PCL targeting the correct platforms AND the existing projects are working again I can go back to refactor my WP8 project to use the shared code. The changes are pretty simple, you can see them [here](https://github.com/paulbatum/mobile-services-xamarin-pcl/commit/c0ae54b6f4c6e5261f4a126da11a0552bac8159f). Lets run it to see if it still works:
 
+![wp8 done](/images/wp8-works-pcl.png)
 
-
-
+Huzzah! That was a bit tougher than the previous steps but we made it. We now have a solution that is sharing Mobile Services code between iOS, Android and WP8.
+ 
 ### Contact
 
 If you have any questions or run into problems feel free to email me at pbatum@microsoft.com or catch me on twitter (@paulbatum).
