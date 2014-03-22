@@ -106,6 +106,38 @@ Now the project can be added to the solution without errors. Next I want to do a
 
 ![Add Windows Phone 8 project](/images/add-wp8-proj.png)
 
+The next step is to update the project to use our shared code. Now to be able to reference my shared project, I'll need to update its targets to include WP8. So lets do that now and build:
+
+![Windows Phone 8 http errors](/images/wp8-http-errors.png)
+
+Uhoh! Windows Phone 8 doesn't have HttpClient, and so our PCL is not valid. We can fix this by using the [HttpClient NuGet package](http://www.nuget.org/packages/Microsoft.Net.Http/) which the Windows Phone 8 project is already using. I right click on the solution, select Manage NuGet Packages and make sure that for HttpClient, my shared project is ticked:
+
+![Add http client](/images/add-http-client.png)
+
+This fixes my compilation errors, but there is a catch. The NuGet for HttpClient uses Bcl.Build for some of its magic, but this magic doesn't work quite right with Xamarin yet. To see this in action, run the iOS project on a real device and you'll get the error "This header must be modified with the appropiate property":
+
+![assembly binding redirect hell](/images/assembly-binding-redirect-hell.png)
+
+The BCL team at Microsoft is aware of this issue but at the current time of writing this issue hasn't been fixed, so here's the workaround: in your iOS and Android projects, replace the generated app.config with the following:
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<configuration>
+	  	<runtime>
+		    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+		      <dependentAssembly>
+		        <assemblyIdentity name="System.Net.Http" publicKeyToken="b03f5f7f11d50a3a" culture="neutral" />
+		        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="2.5.0.0" />
+		      </dependentAssembly>
+		    </assemblyBinding>
+	  	</runtime>
+	</configuration>
+
+This forces the Mono version of HttpClient into use. Be aware that as you work with your projects, you may find that certain actions cause your app.config to be regenerated and it may become invalid again. They key to remember is that for Http related assemblies, your iOS and Android projects need the binding above.
+
+You might also see warnings in Visual Studio about incorrect assembly bindings. My advice is to ignore any of such warnings that appear for your iOS and Android projects. 
+
+
+
 
 
 ### Contact
