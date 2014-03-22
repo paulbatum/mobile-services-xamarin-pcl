@@ -19,11 +19,6 @@ namespace xamarinpcl
         /// </summary>
         /// <returns>The root frame of the Phone Application.</returns>
         public static PhoneApplicationFrame RootFrame { get; private set; }
-
-        public static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://xamarinpcl.azure-mobile.net/",
-            "IablidpNUIraXfejLXNLRgQMRRlwAR41"
-            );
         
         /// <summary>
         /// Constructor for the Application object.

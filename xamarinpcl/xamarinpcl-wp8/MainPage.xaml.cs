@@ -10,27 +10,18 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using xamarinpcl.Resources;
+using Shared;
 
 namespace xamarinpcl
 {
-    public class TodoItem
-    {
-        public string Id { get; set; }
-
-        [JsonProperty(PropertyName = "text")]
-        public string Text { get; set; }
-
-        [JsonProperty(PropertyName = "complete")]
-        public bool Complete { get; set; }
-    }
 
     public partial class MainPage : PhoneApplicationPage
     {
         // MobileServiceCollectionView implements ICollectionView (useful for databinding to lists) and 
         // is integrated with your Mobile Service to make it easy to bind your data to the ListView
-        private MobileServiceCollection<TodoItem, TodoItem> items;
+        private MobileServiceCollection<ToDoItem, ToDoItem> items;
 
-        private IMobileServiceTable<TodoItem> todoTable = App.MobileService.GetTable<TodoItem>();
+        private IMobileServiceTable<ToDoItem> todoTable = Common.MobileService.GetTable<ToDoItem>();
 
         // Constructor
         public MainPage()
@@ -38,7 +29,7 @@ namespace xamarinpcl
             InitializeComponent();
         }
 
-        private async void InsertTodoItem(TodoItem todoItem)
+        private async void InsertTodoItem(ToDoItem todoItem)
         {
             // This code inserts a new TodoItem into the database. When the operation completes
             // and Mobile Services has assigned an Id, the item is added to the CollectionView
@@ -52,8 +43,7 @@ namespace xamarinpcl
             // The query excludes completed TodoItems
             try
             {
-                items = await todoTable
-                    .Where(todoItem => todoItem.Complete == false)
+                items = await Common.GetIncompleteItems()                    
                     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
@@ -64,7 +54,7 @@ namespace xamarinpcl
             ListItems.ItemsSource = items;
         }
 
-        private async void UpdateCheckedTodoItem(TodoItem item)
+        private async void UpdateCheckedTodoItem(ToDoItem item)
         {
             // This code takes a freshly completed TodoItem and updates the database. When the MobileService 
             // responds, the item is removed from the list 
@@ -79,14 +69,14 @@ namespace xamarinpcl
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
-            var todoItem = new TodoItem { Text = TodoInput.Text };
+            var todoItem = new ToDoItem { Text = TodoInput.Text };
             InsertTodoItem(todoItem);
         }
 
         private void CheckBoxComplete_Checked(object sender, RoutedEventArgs e)
         {
             CheckBox cb = (CheckBox)sender;
-            TodoItem item = cb.DataContext as TodoItem;
+            ToDoItem item = cb.DataContext as ToDoItem;
             item.Complete = true;
             UpdateCheckedTodoItem(item);
         }
