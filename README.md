@@ -31,7 +31,7 @@ Back on the quickstart page in the Windows Azure portal I'll switch the project 
 
 ### Step 3 - Add the PCL project
 
-In Xamarin Studio I add a new Portable Library project to the solution. I then go to options -> build -> general and select the platforms I want to target. For now I'm going to select .NET 4.5 and remove Silverlight and Windows Phone. I could keep Windows Phone but it makes things a bit more complicated because Windows Phone 8 is missing System.Net.Http. You can fix this with a NuGet package but for the sake of simplicity I won't cover that in this tutorial. So here's what my targets look like:
+In Xamarin Studio I add a new Portable Library project to the solution. I then go to options -> build -> general and select the platforms I want to target. For now I'm going to select .NET 4.5 and remove Silverlight and Windows Phone. I could keep Windows Phone but it makes things a bit more complicated because Windows Phone 8 is missing System.Net.Http so we'll come back to this a bit later.
 
 ![Configure PCL targets](/images/configure-pcl-project.png)
 
@@ -89,9 +89,24 @@ I then have a bunch of changes to make to the Android and iOS projects to use th
 
 Lets build and run both projects to make sure we haven't broken anything:
 
-![Project references](/images/everything-works-great.png)
+![Everything works](/images/everything-works-great.png)
 
 Awesome!
+
+### Step 4 - Adding Windows Phone 8
+
+Its time to switch gears and flip over to Visual Studio so we can add projects for the Windows platforms. Lets do Windows Phone first. Like before I'll start by downloading the quickstart from the Azure portal and renaming it, but the project file requires a few tweaks before I can add it to the solution. Specifically, I open up the .csproj in a text editor and remove these lines:
+
+	<Import Project="..\packages\Microsoft.Bcl.Build.1.0.8\tools\Microsoft.Bcl.Build.targets" />
+  	<Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+
+The first of these lines will get added again when I update or reinstall the Bcl.Build Nuget package. The second line is no longer necessary because Visual Studio now restores NuGet packages naturally.
+
+Now the project can be added to the solution without errors. Next I want to do a bit of cleanup on the NuGet packages used by this project so I open the NuGet package explorer, let it restore packages if required, and then remove the async package and update all the remaining packages. Lets make sure it builds and runs before we make any more changes:
+
+![Add Windows Phone 8 project](/images/add-wp8-proj.png)
+
+
 
 ### Contact
 
