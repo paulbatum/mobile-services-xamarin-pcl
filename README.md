@@ -1,6 +1,8 @@
 Mobile Services + Xamarin + PCL
 ===========================
 
+#### Note: This tutorial is somewhat out of date. The easiest way to get started with doing mobile development on Azure is with the Mobile Apps features of Azure App Service. There is a [Xamarin.Forms tutorial](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-xamarin-forms-get-started/) that has the correct PCL structure and its much easier than following this tutorial. 
+
 This is a simple tutorial on how to use Mobile Services from a cross platform project using Xamarin, with a focus on using Portable Class Libraries (PCL) to make it easier to share code.
 
 ### Prerequisites
